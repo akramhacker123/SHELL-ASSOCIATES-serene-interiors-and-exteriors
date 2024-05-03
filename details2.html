@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://kit.fontawesome.com/6ce7634ce7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- <---------contact----------> 
+  <div id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="contact-left">
+          <h1>Job Description</h1>
+          <p><i class="fa-solid fa-paper-plane"></i>Creating team schedules and delegating task to ensure proper workflow. Inspect the quality of work carried out. The ability to identify and advise of issues or concerns</p>
+          <!-- <p><i class="fa-solid fa-square-phone"></i>123456575</p> -->
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter-square"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+          <!-- <a href="#" class="btn"> Download CV</a> -->
+        </div>
+        <div class="contact-right">
+          <form name="submit-to-google-sheet">
+            <input type="text" name = "First" placeholder="Your First Name" required>
+            <input type="text" Name = "Last" placeholder="Your Last Name" required>
+            <input type="email" name="Email" placeholder="Your Email" required>
+            <input type="number" name ="Mobile" placeholder="123-456-7890" required>
+            <input type="text" name ="Graduation" pattern="[0-9]{4}" placeholder="YYYY" required>
+            <textarea name="Address" rows="4" placeholder="Write your Address"></textarea>
+            <textarea name="Experience" rows="4" placeholder="Write your Experience"></textarea>
+            <button type="submit"  class="btn">Submit</button>
+          </form>
+          <span id="msg"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxXpM0on9smjgHYn3V6Crye8LbCFuwAlP15YUZdzB-byPalCPQjt5CZXldTYKkVng/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          msg.innerHTML = "Message sent successfully"
+          setTimeout(function(){
+            msg.innerHTML = ""
+          },5000)
+          form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body>
+</html>
